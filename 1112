@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>❤️ 我有个秘密想告诉你 ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: #ffe6f2;
+            font-family: 'Microsoft YaHei', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .heart {
+            color: #ff3f6c;
+            font-size: 60px;
+            animation: heartbeat 1.2s infinite;
+        }
+
+        .message {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255,63,108,0.2);
+            margin: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 1s;
+        }
+
+        button {
+            background: #ff3f6c;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 18px;
+            margin: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        .petals {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .petal {
+            position: absolute;
+            background: #ffb3d9;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            animation: fall linear infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="petals" id="petals"></div>
+    
+    <div class="container">
+        <div class="heart">❤️</div>
+        <h1>亲爱的[名字]</h1>
+        <button onclick="showMessage()">点击打开我的心意</button>
+        <div class="message" id="message">
+            <h2>我喜欢你很久了！</h2>
+            <p>从遇见你的那天起，我的世界充满了色彩<br>
+               你愿意给我一个陪伴你的机会吗？</p>
+            <div class="heart">💌</div>
+        </div>
+    </div>
+
+    <script>
+        function showMessage() {
+            document.getElementById('message').style.opacity = 1;
+            document.getElementById('message').style.transform = 'translateY(0)';
+            createPetals();
+        }
+
+        function createPetals() {
+            const petalsContainer = document.getElementById('petals');
+            for(let i = 0; i < 30; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.width = petal.style.height = Math.random() * 15 + 5 + 'px';
+                petal.style.animationDuration = Math.random() * 3 + 2 + 's';
+                petalsContainer.appendChild(petal);
+            }
+        }
+    </script>
+</body>
+</html>
